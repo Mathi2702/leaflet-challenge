@@ -1,16 +1,16 @@
 var myMap = L.map("map", {
     center: [37.09, -95.71],
-    zoom: 4
+    zoom: 5
   });
 
 //colorscale
-  function colorScale(d) { 
-    if (d >= 5) { return "#bd0026" } else
-    if (d >= 4) { return "#f03b20" } else
-    if (d >= 3) { return "#fd8d3c" } else
-    if (d >= 2) { return "#feb24c" } else
-    if (d >= 1) { return "#fed976" } else
-    if (d >= 0) { return "#ffffb2" };
+  function colorScale(colorVal) { 
+    if (colorVal >= 5) { return "#bd0026" } else
+    if (colorVal >= 4) { return "#f03b20" } else
+    if (colorVal >= 3) { return "#fd8d3c" } else
+    if (colorVal>= 2) { return "#feb24c" } else
+    if (colorVal >= 1) { return "#fed976" } else
+    if (colorVal >= 0) { return "#ffffb2" };
   };
   
 // marker size 
@@ -32,20 +32,21 @@ function markerSize(magValue) {
     L.geoJSON(response,{
         //pointToLayer:(feature,latLng)=>L.circleMarker(latLng),
         pointToLayer:(feature,latLng)=>{
-            return L.circleMarker(latLng),{
+            return L.circleMarker((feature,latLng),{
                 fillOpacity: 0.75,
                 color: "black",
                 weight: 1,
                 fillColor: colorScale(feature.properties.mag),
                 radius: markerSize(feature.properties.mag)
-            }
+            });
         },
         onEachFeature:(feature,layer)=>{
             layer.bindPopup(feature.properties.place)
 
         }
     }).addTo(myMap)
-  }
+  });
 
-  )
+  
+ 
   
