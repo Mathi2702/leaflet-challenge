@@ -47,6 +47,3 @@ function markerSize(magValue) {
     }).addTo(myMap)
   });
 
-  
- 
-  
