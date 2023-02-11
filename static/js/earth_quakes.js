@@ -41,7 +41,10 @@ function markerSize(magValue) {
             });
         },
         onEachFeature:(feature,layer)=>{
-            layer.bindPopup(feature.properties.place)
+            layer.bindPopup( "<h4 style='text-align:center;'>" + feature.properties.place +
+            "</h4> <hr> <h5 style='text-align:center;'>" + feature.properties.mag + 
+            "</h5><hr> <h5 style='text-align:center;'>" + feature.geometry.coordinates+ "</h5>"
+            )
 
         }
     }).addTo(myMap)
