@@ -46,4 +46,18 @@ function markerSize(magValue) {
         }
     }).addTo(myMap)
   });
-
+  var legend = L.control({ position: 'bottomright' })
+  legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend')
+    var limits = [0, 1, 2, 3, 4 , 5]
+    var labels = []
+  
+    for (let i = 0; i < limits.length; i++) {
+      div.innerHTML +=
+      '<i style="background:' + colorScale(limits[i] + 1) + '"></i> ' +
+      limits[i] + (limits[i + 1] ? '&ndash;' + limits[i + 1] + '<br>' : '+');
+      }
+  
+  return div;
+  };
+  legend.addTo(myMap);
